@@ -1,5 +1,7 @@
 <?php
+    require_once '../database.php';
 
+    $output = $conn->newQuery()
 ?>
 
 <!doctype html>
@@ -56,6 +58,16 @@
     <hr>
     <br>
     <h3>Here's an overview of your articles:</h3>
+
+    <?php
+
+    $showart = $conn->prepare('SELECT id,heading,content,createt,picture FROM articles');
+    $showart->execute();
+
+
+
+
+    ?>
 
 
 
