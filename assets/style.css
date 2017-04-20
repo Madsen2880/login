@@ -4,8 +4,15 @@ body{
     font-family: 'Comfortaa', cursive;
     text-align:center;
 }
+input .form-control {
+    padding: 0;
+    display: inline-block;
+    width: auto;
+    border-radius: 0;
 
-input[type="text"], input[type="password"]{
+}
+
+input[type="text"],input[type="file"]{
     outline:none;
     padding:10px;
     display:block;

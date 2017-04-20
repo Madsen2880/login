@@ -1,6 +1,5 @@
 <?php
-    require_once '../database.php';
-
+require_once '../../database.php';
 
 
 ?>
@@ -12,6 +11,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../assets/style.css">
     <title>Document</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -21,7 +21,6 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/style.css">
 </head>
 <body>
 
@@ -37,9 +36,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index.php?p=admindex">Oversigt<span class="sr-only">(current)</span></a></li>
-                    <li><a href="index.php?p=create">Ny article</a></li>
-                    <li><a href="index.php?p=edit">Rediger</a></li>
+                    <li><a href="../admindex.php?p=admindex">Oversigt<span class="sr-only">(current)</span></a></li>
+                    <li><a href="../admindex.php?p=create">Ny article</a></li>
+                    <li><a href="../admindex.php?p=edit">Rediger</a></li>
                 </ul>
                 <form class="navbar-form">
                     <div class="form-group">
@@ -55,54 +54,11 @@
 
 <div class="container">
 
-    <h2>Welcome</h2>
-    <h3>You have now logged in to your admin panel</h3>
-    <hr>
-    <br>
-    <h3>Here's an overview of your articles:</h3>
+    <form action="../admindex.php" method="POST">
 
-    <table class = "table">
-        <caption>Produkter</caption>
+        <input type="text" placeholder="Skriv overskrift her..." name="heading">
+        <input type="text" placeholder="Skriv indhold her..." name="content">
+        <input type="file" placeholder="Vælg fil" name="picture">
+        <input type="submit">
 
-        <thead>
-        <tr>
-            <th>ID:</th>
-            <th>Overskrift:</th>
-            <th>Billede:</th>
-            <th>Indhold:</th>
-            <th>Skrevet den:</th>
-
-        </tr>
-
-        </thead>
-
-        <tbody>
-
-    <?php
-
-    $showart = $conn->prepare('SELECT id,heading,content,createt,picture FROM articles');
-    $showart->execute();
-
-    if($showart->execute()){
-        $overview = $showart->fetchALL(PDO::FETCH_ASSOC);
-    }
-
-    foreach($overview as $article){
-        ?>
-        <tr>
-            <td><?= $article['id'] ?></td>
-            <td><?= $article['heading'] ?></td>
-            <td><img src="img/<?=$article['picture'];?>" height="75px" width="50" </td>
-            <td><?= $article['content']?></td>
-            <td><?= $article['createt'] ?></td>
-
-
-        </tr>
-        <?php
-    }
-    ?>
-
-        </tbody>
-
-    </table>
-</div>
+    </form>
